@@ -28,11 +28,11 @@ mkdir -p $buildDir
 buildDir=$(readlink -f $buildDir)
 
 REPO_CONFIG="\
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta-poky \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta-yocto-bsp \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-oe \
-LAYER@https://github.com/meta-java/meta-java;branch=master \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=kirkstone;layer=meta \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=kirkstone;layer=meta-poky \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=kirkstone;layer=meta-yocto-bsp \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=kirkstone;layer=meta-oe \
+LAYER@https://github.com/meta-java/meta-java;branch=kirkstone \
 "
 
 #We use 2.4.4 build tools because of kenrel version limitations
@@ -165,7 +165,7 @@ for config in $REPO_CONFIG; do
     fi
     if [ "$VAR" = "SOURCE" ] ; then
           META=""
-          BRANCH="master-cgx"
+          BRANCH="kirkstone-cgx"
           TREE=$(echo $VAL | cut -d \; -f 1)
           for option in $(echo $VAL | sed s,\;,\ ,g); do
               OVAR=$(echo $option | cut -d = -f 1) 
@@ -187,7 +187,7 @@ for config in $REPO_CONFIG; do
               popd 2>/dev/null >/dev/null
               
               if [ ! -e $LSOURCE_EXPORT ] ; then
-                 if [ "$BRANCH" = "master-cgx" ] ; then
+                 if [ "$BRANCH" = "kirkstone-cgx" ] ; then
                     git clone --bare $LSOURCE $LSOURCE_EXPORT
                  else
                     git clone -b $BRANCH --bare $LSOURCE $LSOURCE_EXPORT

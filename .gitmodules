@@ -1,11 +1,11 @@
 [submodule "layers/poky"]
 	path = layers/poky
-	url = https://github.com/MontaVista-OpenSourceTechnology/poky.git
-	branch = scarthgap-cgx
+	url = git://git.yoctoproject.org/poky
+	branch = scarthgap
 [submodule "layers/meta-openembedded"]
 	path = layers/meta-openembedded
-	url = https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git
-	branch = scarthgap-cgx
+	url = https://git.openembedded.org/meta-openembedded 
+	branch = scarthgap
 [submodule "layers/meta-java"]
 	path = layers/meta-java
 	url = https://github.com/meta-java/meta-java

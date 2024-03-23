@@ -28,11 +28,11 @@ mkdir -p $buildDir
 buildDir=$(readlink -f $buildDir)
 
 REPO_CONFIG="\
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=scarthgap;layer=meta \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=scarthgap;layer=meta-poky \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=scarthgap;layer=meta-yocto-bsp \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=scarthgap;layer=meta-oe \
-LAYER@https://github.com/meta-java/meta-java;branch=scarthgap \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta-poky \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta-yocto-bsp \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-oe \
+LAYER@https://github.com/meta-java/meta-java;branch=master \
 "
 
 #We use 2.4.4 build tools because of kenrel version limitations
@@ -165,7 +165,7 @@ for config in $REPO_CONFIG; do
     fi
     if [ "$VAR" = "SOURCE" ] ; then
           META=""
-          BRANCH="scarthgap-cgx"
+          BRANCH="master-cgx"
           TREE=$(echo $VAL | cut -d \; -f 1)
           for option in $(echo $VAL | sed s,\;,\ ,g); do
               OVAR=$(echo $option | cut -d = -f 1) 
@@ -187,7 +187,7 @@ for config in $REPO_CONFIG; do
               popd 2>/dev/null >/dev/null
               
               if [ ! -e $LSOURCE_EXPORT ] ; then
-                 if [ "$BRANCH" = "scarthgap-cgx" ] ; then
+                 if [ "$BRANCH" = "master-cgx" ] ; then
                     git clone --bare $LSOURCE $LSOURCE_EXPORT
                  else
                     git clone -b $BRANCH --bare $LSOURCE $LSOURCE_EXPORT
